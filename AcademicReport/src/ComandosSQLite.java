@@ -17,7 +17,7 @@ public class ComandosSQLite {
 	        statement = connection.createStatement();
 	        resultSet = statement.executeQuery("SELECT fileType FROM fileTypes");
 	        while (resultSet.next()) {
-	            System.out.println("fileTypes:"
+	            System.out.println("fileTypes: "
 	                    + resultSet.getString("fileType"));
 	        }
 	    } catch (Exception e) {
