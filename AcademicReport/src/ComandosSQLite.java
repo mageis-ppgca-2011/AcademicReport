@@ -13,7 +13,7 @@ public class ComandosSQLite {
 
 	    try {
 	        Class.forName("org.sqlite.JDBC");
-	        connection = DriverManager.getConnection("jdbc:sqlite:c:\\zotero.sqlite");
+	        connection = DriverManager.getConnection("jdbc:sqlite:src/zotero.sqlite");
 	        statement = connection.createStatement();
 	        resultSet = statement.executeQuery("SELECT fileType FROM fileTypes");
 	        while (resultSet.next()) {
