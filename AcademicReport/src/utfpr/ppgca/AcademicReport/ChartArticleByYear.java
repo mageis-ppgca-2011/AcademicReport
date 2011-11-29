@@ -4,7 +4,10 @@ package utfpr.ppgca.AcademicReport;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
@@ -27,6 +30,11 @@ public class ChartArticleByYear {
 		
 		chart = ChartFactory.createPieChart("Pie Chart - Amount of Articles by Year", dataset, false, false, false);
 		
+	}
+	
+	public JPanel getChartPanel()
+	{
+		return new ChartPanel(chart);
 	}
 	
 	public void saveAsJpeg(String path)
