@@ -6,7 +6,7 @@ public class ComandosSQLite {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public void example() {
 		Connection connection = null;
 	    ResultSet resultSet = null;
 	    Statement statement = null;
@@ -30,9 +30,7 @@ public class ComandosSQLite {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-	}
-
-
+	    }
 	}
 
 }
