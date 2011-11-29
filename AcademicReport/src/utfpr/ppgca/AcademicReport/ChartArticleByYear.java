@@ -22,10 +22,10 @@ public class ChartArticleByYear {
 		DefaultPieDataset dataset = new DefaultPieDataset();
         
 		for (ArticleByYear a : articles) {
-			dataset.setValue(String.valueOf(a.Year), a.Amount);
+			dataset.setValue(String.valueOf(a.Year) + " - " + a.Amount, a.Amount);
 		}
 		
-		chart = ChartFactory.createPieChart("Chart 1", dataset, false, false, false);
+		chart = ChartFactory.createPieChart("Pie Chart - Amount of Articles by Year", dataset, false, false, false);
 		
 	}
 	
