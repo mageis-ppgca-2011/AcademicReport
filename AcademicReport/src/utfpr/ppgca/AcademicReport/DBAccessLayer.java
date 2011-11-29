@@ -62,7 +62,7 @@ public class DBAccessLayer {
 	        		
 	        		article.Amount = resultSet.getInt("Amount");
 	        		
-	        		sunOrAddArticle(articlesList, article);
+	        		sunOrAddArticle(articlesList, article); 
 	        		
 	        		//System.out.println(article.Year + " - " + article.Amount);
 	        	}
