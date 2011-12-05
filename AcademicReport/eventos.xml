@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='ISO-8859-1'?> 
+<calendario>
+<evento><nome>MICRO-44: The 44th Annual IEEE/ACM International Symposium on Microarchitecture
+</nome>
+	<local>Porto Alegre ,   Brazil
+	</local>
+	<data>December 3rd-7th</data>
+</evento>
+<evento><nome>4th International Workshop on Network on Chip Architectures
+</nome>
+	<local>Porto Alegre ,   Brazil</local>
+	<data>December 4th-5th</data>
+</evento>
+
+<evento><nome>CHiMiT '11: Computer Human Interaction for the Management of Information Technology
+</nome>
+	<local>Cambridge ,   MA    USA</local>
+	<data>December 4th-5th</data>
+</evento>
+
+<evento><nome>LISA 11: 25th Large Installation System Administration Conference
+</nome>
+	<local>Boston ,   MA    USA</local>
+	<data>December 4th-9th</data>
+</evento>
+
+<evento><nome>Annual Computer Security Applications Conference
+</nome>
+	<local>Orlando ,   FL    USA</local>
+	<data>December 5th-9th</data>
+</evento>
+<evento><nome>Bionetics'11: International ICST Conference on Bio-Inspired Models of Network, Information and Computing Systems
+</nome>
+	<local>York ,   United Kingdom</local>
+	<data>December 5th-7th York</data>
+</evento>
+<evento><nome>Computer Measurement Group 2011 International Conference
+</nome>
+	<local>Washington ,   DC    USA</local>
+	<data>December 5th-9th</data>
+</evento>
+<evento><nome>Haifa Verification Conference 2011
+</nome>
+	<local>Haifa ,   Israel</local>
+	<data>December 5th-8th</data>
+</evento>
+<evento><nome>IEEE International Conference on Data Mining
+</nome>
+	<local>Vancouver ,   BC    Canada</local>
+	<data>December 11th-14th</data>
+</evento>
+</calendario>
