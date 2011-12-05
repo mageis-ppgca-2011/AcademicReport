@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import utfpr.ppgca.AcademicReport.entities.ArticleByYear;
+import utfpr.ppgca.AcademicReport.entities.ArticleCitation;
 import utfpr.ppgca.AcademicReport.util.Parse;
 
 public class DBAccessLayer {
@@ -31,6 +32,19 @@ public class DBAccessLayer {
 
 " ORDER BY  " +
 "   Year";
+
+	public static final String QUERY_ARTICLES_CITATIONS = 		
+	"SELECT DISTINCT(i1ID), " +
+	"	T110.value AS Title, " +
+	"	T18.value AS callNumber " +
+	"FROM " +
+	"	(SELECT DISTINCT(itemID) as i1ID, value FROM itemData, itemDataValues WHERE fieldID='110' AND itemData.valueID = itemDataValues.valueID) AS T110 " + 
+	"LEFT JOIN " + 
+	"	(SELECT DISTINCT(itemID) as i2ID, value FROM itemData, itemDataValues WHERE fieldID='18' AND itemData.valueID = itemDataValues.valueID) AS T18 " +
+	"ON i1ID=i2ID";
+
+	public static final String QUERY_TESTE =
+	"	(SELECT DISTINCT(itemID) as i1ID, value AS Title FROM itemData, itemDataValues WHERE fieldID='110' AND itemData.valueID = itemDataValues.valueID) ";
 	
 	public DBAccessLayer() {
 		
@@ -46,8 +60,8 @@ public class DBAccessLayer {
 
 	    try {
 	        Class.forName("org.sqlite.JDBC");
-	        //connection = DriverManager.getConnection("jdbc:sqlite:src/zotero.sqlite");
-	        connection = DriverManager.getConnection("jdbc:sqlite:C:\\LocalDocuments\\Mestrado\\Laudelino\\zotero.sqlite");
+	        connection = DriverManager.getConnection("jdbc:sqlite:src/zotero.sqlite");
+	        //connection = DriverManager.getConnection("jdbc:sqlite:C:\\LocalDocuments\\Mestrado\\Laudelino\\zotero.sqlite");
 	         
 	        statement = connection.createStatement();
 	        resultSet = statement.executeQuery(QUERY_ARTICLES_BY_YEAR);
@@ -113,5 +127,53 @@ public class DBAccessLayer {
 		}
 		
 		return list;
+	}
+	
+	public static ArrayList<ArticleCitation> GetArticleCitation() {
+		
+		Connection connection = null;
+	    ResultSet resultSet = null;
+	    Statement statement = null;
+	    
+	    ArrayList<ArticleCitation> articlesList = new ArrayList<ArticleCitation>(); 
+
+	    try {
+	        Class.forName("org.sqlite.JDBC");
+	        connection = DriverManager.getConnection("jdbc:sqlite:src/zotero.sqlite");
+         
+	        statement = connection.createStatement();
+	        resultSet = statement.executeQuery(QUERY_ARTICLES_CITATIONS);
+	        while (resultSet.next()) {
+	            
+	        	ArticleCitation article = new ArticleCitation();
+	        	try {
+        		
+	        		article.Title = resultSet.getString("Title");
+	        		if (resultSet.getString("callNumber") == null )
+	        			article.Amount = 0;
+	        		else
+	        			article.Amount = resultSet.getInt("callNumber");
+	        		
+	        		articlesList.add(article);
+	        		
+	        		System.out.println(article.Title+" - "+ article.Amount);
+	        	}
+	        	catch(Exception ex) {
+	        		System.out.println("error on parse values");
+	        	}
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {  
+	        try {
+	            resultSet.close();
+	            statement.close();
+	            connection.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
+		return articlesList;
 	}
 }

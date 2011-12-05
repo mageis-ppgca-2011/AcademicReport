@@ -10,7 +10,8 @@ public class AcademicReport {
 	 */
 	public static void main(String[] args) {
 		// Test the Chart Article By Year
-		ChartArticleByYear chart = new ChartArticleByYear();
+		//ChartArticleByYear chart = new ChartArticleByYear();
+		ChartArticleCitation chart = new ChartArticleCitation();
 		
 		JFrame frame = new JFrame();
 		
