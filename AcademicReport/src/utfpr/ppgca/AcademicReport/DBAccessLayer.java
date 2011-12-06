@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import utfpr.ppgca.AcademicReport.entities.ArticleByYear;
-import utfpr.ppgca.AcademicReport.entities.ArticleCitation;
+import utfpr.ppgca.AcademicReport.entities.*;
+
 import utfpr.ppgca.AcademicReport.util.Parse;
 
 public class DBAccessLayer {
@@ -46,7 +46,21 @@ public class DBAccessLayer {
 	public static final String QUERY_TESTE =
 	"	(SELECT DISTINCT(itemID) as i1ID, value AS Title FROM itemData, itemDataValues WHERE fieldID='110' AND itemData.valueID = itemDataValues.valueID) ";
 	
-	public DBAccessLayer() {
+	public static final String QUERY_TOTAL_AMOUNT_ARTICLES_BY_ITEM_TYPE =
+	"SELECT count(itemID) AS totalAmount FROM items";
+	
+	public static final String QUERY_ARTICLES_BY_ITEM_TYPE = 
+	"SELECT " +
+	"	it.typeName as name, " +
+	"	count(distinct i.itemID) as amount " +
+	"FROM " +
+	"	itemtypes as it " +
+	"		inner join items as i " +
+	"			on it.itemTypeID = i.itemTypeID " +
+	"GROUP BY " +
+	"	it.typeName";
+	
+	public DBAccessLayer() throws ClassNotFoundException {
 		
 	}
 	
@@ -59,7 +73,7 @@ public class DBAccessLayer {
 	    ArrayList<ArticleByYear> articlesList = new ArrayList<ArticleByYear>(); 
 
 	    try {
-	        Class.forName("org.sqlite.JDBC");
+	    	Class.forName("org.sqlite.JDBC");    
 	        connection = DriverManager.getConnection("jdbc:sqlite:src/zotero.sqlite");
 	        //connection = DriverManager.getConnection("jdbc:sqlite:C:\\LocalDocuments\\Mestrado\\Laudelino\\zotero.sqlite");
 	         
@@ -129,7 +143,7 @@ public class DBAccessLayer {
 		return list;
 	}
 	
-	public static ArrayList<ArticleCitation> GetArticleCitation() {
+/*	public static ArrayList<ArticleCitation> GetArticleCitation() {
 		
 		Connection connection = null;
 	    ResultSet resultSet = null;
@@ -176,4 +190,63 @@ public class DBAccessLayer {
 		
 		return articlesList;
 	}
+*/
+	public static ArrayList<ArticleByItemType> GetArticlesByItemType() {
+		  
+		Connection connection = null;
+		ResultSet rsTotal = null;
+		Statement stTotal = null;
+		ResultSet rsLista = null;
+		Statement stLista = null;		
+		double total = 0;
+		  
+		ArrayList<ArticleByItemType> lista = new ArrayList<ArticleByItemType>(0);
+		  
+		try {
+			Class.forName("org.sqlite.JDBC");    
+			connection = DriverManager.getConnection("jdbc:sqlite:src/zotero.sqlite");
+			
+			stTotal = connection.createStatement();
+
+			rsTotal = stTotal.executeQuery(QUERY_TOTAL_AMOUNT_ARTICLES_BY_ITEM_TYPE);
+	        
+		    if(rsTotal.next()) {
+		    	total = rsTotal.getDouble("totalAmount");
+		    	
+		    	if(total != 0) {
+		    		stLista = connection.createStatement();
+		    		rsLista = stLista.executeQuery(QUERY_ARTICLES_BY_ITEM_TYPE);
+		    		  
+		    		while (rsLista.next()) {		    			
+		    			ArticleByItemType a = new ArticleByItemType();
+		    			
+		    			a.setItemType(rsLista.getString("name"));
+		    			
+		    			a.setAmount(rsLista.getInt("amount"));
+		    			
+		    			a.setPercent(a.getAmount()/total);
+		    			
+		    			lista.add(a);
+		    		}
+		    	}
+		      } 
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {  
+		        try {
+		        	rsTotal.close();
+		        	rsLista.close();
+		        	
+		            stTotal.close();
+		            stLista.close();
+		            
+		            connection.close();
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		    }
+			
+			return lista;
+	}	
 }
+
