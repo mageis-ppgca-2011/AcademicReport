@@ -31,7 +31,7 @@ public class ChartArticleByCitation {
 			System.out.println(a.Title + " - " + a.Amount);
 		}
 		
-		chart = ChartFactory.createStackedBarChart("Amount of Articles by Author", "Author", "Amount", dataset,PlotOrientation.HORIZONTAL , false, false, true);
+		chart = ChartFactory.createStackedBarChart("Amount of Citation by Article", "Article", "Amount", dataset,PlotOrientation.HORIZONTAL , false, false, true);
 				
 	}
 	
