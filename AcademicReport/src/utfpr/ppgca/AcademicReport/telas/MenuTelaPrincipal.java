@@ -11,7 +11,8 @@ public class MenuTelaPrincipal {
 	private JMenu mnCharts = new JMenu("Pie Chart");  
 
 	private JMenuItem byYear = new JMenuItem("Amount of Articles by Year");  
-	private JMenuItem byItemType = new JMenuItem("Amount of Articles by Item Type");  
+	private JMenuItem byItemType = new JMenuItem("Amount of Articles by Item Type");
+	private JMenuItem byCitation = new JMenuItem("Amount of Articles by Citation"); 
 	private JMenuItem exit = new JMenuItem("Exit");
 	
 	public MenuTelaPrincipal() {  
@@ -22,6 +23,7 @@ public class MenuTelaPrincipal {
 		// Menu 
 		mnCharts.add(byYear);
 		mnCharts.add(byItemType);
+		mnCharts.add(byCitation);
 		mnCharts.add(exit);
 	
 		menuBar.add(mnCharts);
@@ -38,6 +40,10 @@ public class MenuTelaPrincipal {
 	public JMenuItem getByItemType() {
 		return byItemType;
 	}
+	
+	public JMenuItem getByCitation() {
+		return byCitation;
+	}	
 	
 	public JMenuItem getExit() {
 		return exit;

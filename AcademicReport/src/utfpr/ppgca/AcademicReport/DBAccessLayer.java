@@ -43,9 +43,7 @@ public class DBAccessLayer {
 	"	(SELECT DISTINCT(itemID) as i2ID, value FROM itemData, itemDataValues WHERE fieldID='18' AND itemData.valueID = itemDataValues.valueID) AS T18 " +
 	"ON i1ID=i2ID";
 
-	public static final String QUERY_TESTE =
-	"	(SELECT DISTINCT(itemID) as i1ID, value AS Title FROM itemData, itemDataValues WHERE fieldID='110' AND itemData.valueID = itemDataValues.valueID) ";
-	
+
 	public static final String QUERY_TOTAL_AMOUNT_ARTICLES_BY_ITEM_TYPE =
 	"SELECT count(itemID) AS totalAmount FROM items";
 	
@@ -143,13 +141,13 @@ public class DBAccessLayer {
 		return list;
 	}
 	
-/*	public static ArrayList<ArticleCitation> GetArticleCitation() {
+	public static ArrayList<ArticleByCitation> GetArticleByCitation() {
 		
 		Connection connection = null;
 	    ResultSet resultSet = null;
 	    Statement statement = null;
 	    
-	    ArrayList<ArticleCitation> articlesList = new ArrayList<ArticleCitation>(); 
+	    ArrayList<ArticleByCitation> articlesList = new ArrayList<ArticleByCitation>(); 
 
 	    try {
 	        Class.forName("org.sqlite.JDBC");
@@ -159,7 +157,7 @@ public class DBAccessLayer {
 	        resultSet = statement.executeQuery(QUERY_ARTICLES_CITATIONS);
 	        while (resultSet.next()) {
 	            
-	        	ArticleCitation article = new ArticleCitation();
+	        	ArticleByCitation article = new ArticleByCitation();
 	        	try {
         		
 	        		article.Title = resultSet.getString("Title");
@@ -170,7 +168,7 @@ public class DBAccessLayer {
 	        		
 	        		articlesList.add(article);
 	        		
-	        		System.out.println(article.Title+" - "+ article.Amount);
+	        		//System.out.println(article.Title+" - "+ article.Amount);
 	        	}
 	        	catch(Exception ex) {
 	        		System.out.println("error on parse values");
@@ -190,7 +188,7 @@ public class DBAccessLayer {
 		
 		return articlesList;
 	}
-*/
+
 	public static ArrayList<ArticleByItemType> GetArticlesByItemType() {
 		  
 		Connection connection = null;

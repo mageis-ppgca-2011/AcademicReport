@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import utfpr.ppgca.AcademicReport.ChartArticleByCitation;
 import utfpr.ppgca.AcademicReport.ChartArticleByItemType;
 import utfpr.ppgca.AcademicReport.ChartArticleByYear;
 
@@ -44,7 +45,7 @@ public class TelaPrincipal extends JFrame {
     
 	protected void showChartArticleByYear() {
 		ChartArticleByYear year = new ChartArticleByYear();
-		
+		//ChartArticleCitation chartCitation = new ChartArticleCitation();
 		this.setContentPane(year.getChartPanel());
 		this.setVisible(true);
 	}
@@ -55,6 +56,13 @@ public class TelaPrincipal extends JFrame {
 		this.setContentPane(type.getChartPanel());
 		this.setVisible(true);		
 	}
+	
+	protected void showChartArticleByCitation() {
+		ChartArticleByCitation type = new ChartArticleByCitation();
+		
+		this.setContentPane(type.getChartPanel());
+		this.setVisible(true);		
+	}	
 	
     private void setaComportamentoMenu() {
     	menu.getByYear().addActionListener(
@@ -72,7 +80,15 @@ public class TelaPrincipal extends JFrame {
 								}
 							}
 						);
-    	
+
+    	menu.getByCitation().addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						showChartArticleByCitation();
+					}
+				}
+			);
+
     	menu.getExit().addActionListener(
 							new ActionListener() {
 								public void actionPerformed(ActionEvent e) {

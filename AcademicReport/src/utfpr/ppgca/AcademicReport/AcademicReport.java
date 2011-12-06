@@ -1,8 +1,5 @@
 package utfpr.ppgca.AcademicReport;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import utfpr.ppgca.AcademicReport.telas.TelaPrincipal;
 
 public class AcademicReport {
@@ -18,7 +15,7 @@ public class AcademicReport {
 	public static void main(String[] args) {
 		// Test the Chart Article By Year
 		// ChartArticleByYear chartYear = new ChartArticleByYear();
-		//ChartArticleCitation chartCitation = new ChartArticleCitation();
+		//ChartArticleByCitation chartByCitation = new ChartArticleByCitation();
 		//CharArticleByItemType chartItemType = new CharArticleByItemType();
 				
 		//JFrame frame = new JFrame();
